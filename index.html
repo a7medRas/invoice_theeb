@@ -5,9 +5,226 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فاتورة مؤسسة ذيب</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <!-- (بقية الكود محفوظ مسبقًا في الكانفاس) -->
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --box-color: #1e1e1e;
+      --border-color: #444;
+      --header-bg: #333;
+      --row-alt-bg: #2a2a2a;
+      --note-color: #ccc;
+      --link-color: #4dd0e1;
+    }
+    .light-mode {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --box-color: #ffffff;
+      --border-color: #ccc;
+      --header-bg: #f0f0f0;
+      --row-alt-bg: #f9f9f9;
+      --note-color: #333;
+      --link-color: #0077cc;
+    }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+      transition: all 0.3s ease-in-out;
+    }
+    .invoice-box {
+      max-width: 100%;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      background-color: var(--box-color);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    .invoice-number {
+      text-align: center;
+      color: #ff4d4d;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .info {
+      margin-bottom: 20px;
+    }
+    .info p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 15px;
+    }
+    th {
+      background-color: var(--header-bg);
+    }
+    tbody tr:nth-child(even) {
+      background-color: var(--row-alt-bg);
+    }
+    .total-box {
+      margin-top: 20px;
+      font-size: 16px;
+      padding: 10px;
+      background-color: var(--row-alt-bg);
+      border: 1px solid var(--border-color);
+    }
+    .notes {
+      margin-top: 30px;
+      font-size: 14px;
+      color: var(--note-color);
+    }
+    .download-button {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .download-button button {
+      background-color: #008cba;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 10px;
+    }
+    .toggle-button {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .toggle-button button {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    .total-box a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    .total-box a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .invoice-box {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .info p, .total-box p, th, td {
+        font-size: 14px;
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- محتوى الفاتورة الكامل -->
+  <div class="toggle-button">
+    <button onclick="document.body.classList.toggle('light-mode')" title="تبديل الوضع الليلي/النهاري">🌓</button>
+  </div>
+  <div class="invoice-box">
+    <h1>فاتورة / Invoice</h1>
+    <div class="invoice-number">رقم الفاتورة / Invoice No.: INV-202507051234</div>
+
+    <div class="info">
+      <p><strong>البائع / Seller:</strong> مؤسسة ذيب</p>
+      <p><strong>رقم الهاتف / Phone:</strong> 00201090312265</p>
+      <p><strong>البريد الإلكتروني / Email:</strong> tigerrm8@gmail.com</p>
+      <p><strong>تاريخ الفاتورة / Date:</strong> 05/07/2025</p>
+      <p><strong>اسم العميل / Client:</strong> وكالة شحن أبو لوجي</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>المنتج / Product</th>
+          <th>الكمية / Quantity</th>
+          <th>سعر الوحدة / Unit Price</th>
+          <th>الخصم / Discount</th>
+          <th>الإجمالي / Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ماسة / Diamond</td>
+          <td>45,500</td>
+          <td>38,675 ج.م</td>
+          <td>1,500 ج.م</td>
+          <td>37,175 ج.م</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-box">
+      <p><strong>الإجمالي النهائي / Final Total:</strong> 37,175 ج.م</p>
+      <p><strong>طريقة الدفع / Payment Method:</strong> فودافون كاش / Vodafone Cash</p>
+      <p><a href="https://www.vodafone.com.eg/" target="_blank">اضغط هنا للدفع عبر فودافون كاش على رقم: 01090312265</a></p>
+    </div>
+
+    <div class="notes">
+      <p>📌 يرجى السداد خلال 48 ساعة من تاريخ إصدار الفاتورة.</p>
+      <p>📌 الفاتورة لا تشمل مصاريف الشحن أو رسوم التحويل إن وُجدت.</p>
+    </div>
+
+    <div class="download-button">
+  <div style="text-align:center; margin-bottom:10px;">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=vodafone-cash:01090312265&size=90x90" alt="QR Code للدفع" />
+    <div style="font-size: 13px; margin-top: 5px; color: var(--note-color);">امسح للدفع</div>
+  </div>
+  <button id="copyBtn">📋 نسخ رقم المحفظة</button>
+  <button id="printBtn">📄 طباعة / حفظ كـ PDF</button>
+  <div id="action-status" style="margin-top: 10px; font-size: 14px; color: var(--note-color); text-align: center;"></div>
+</div>
+    </div>
+  </div>
+
+  <script>
+  window.onload = function () {
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      navigator.clipboard.writeText('01090312265').then(() => {
+        const toast = document.createElement('div');
+        toast.textContent = 'تم نسخ الرقم بنجاح ✅';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.background = '#28a745';
+        toast.style.color = 'white';
+        toast.style.padding = '10px 15px';
+        toast.style.borderRadius = '6px';
+        toast.style.boxShadow = '0 0 10px rgba(0,0,0,0.2)';
+        toast.style.zIndex = '1000';
+        document.body.appendChild(toast);
+        document.getElementById('action-status').textContent = '📋 تم نسخ الرقم إلى الحافظة';
+        setTimeout(() => toast.remove(), 3000);
+      });
+    });
+
+    document.getElementById('printBtn').addEventListener('click', function() {
+      window.print();
+    });
+  };
+</script>
 </body>
 </html>
